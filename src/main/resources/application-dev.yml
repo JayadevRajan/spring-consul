@@ -1,0 +1,4 @@
+identify-app:
+  user:
+    session-timeout: 60
+    send-notification: false

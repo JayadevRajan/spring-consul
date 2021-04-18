@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: identity-service #no space allowed
+  cloud:
+    consul:
+      enabled: true   #global flag
+      host: http://127.0.0.1
+      discovery:
+        enabled: true #for service discovery
+        instance-id: identity-service
+        healthCheckPath: /api/health
+        register: false
+      config:
+        failFast: true
+        enabled: true
+        prefix: microservice/identity-service
+        defaultContext: identity-service
+        data-key: data
+        profileSeparator: '::'
+        format: yaml
+        watch:
+          enabled: true #run time watch
+
+
+---
+spring:
+  profiles: dev
+  cloud:
+    consul:
+      enabled: true
+      config:
+        failFast: true
+        enabled: true
+
+---
+spring:
+  profiles: prod
+  cloud:
+    consul:
+      config:
+        failFast: true
+        enabled: true
